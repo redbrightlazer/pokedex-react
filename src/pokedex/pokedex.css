@@ -4,7 +4,7 @@ body {
 .none {
   display: none;
 }
-#desc {
+.desc {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -17,8 +17,12 @@ body {
   z-index: 100;
   overflow: auto;
 }
-
-#desc .x {
+.imgback {
+  width: 250px;
+  height: 250px;
+  margin: -80px 0px;
+}
+.desc .x {
   position: absolute;
   top: 10px;
   right: 10px;

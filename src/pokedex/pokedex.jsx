@@ -31,6 +31,7 @@ function Pokedex() {
             evo: evoData.evolves_from_species?.name || null,
             weight: pokeInfo.weight,
             height: pokeInfo.height,
+            imgBack: pokeInfo.sprites.back_default,
             baseHP:
               pokeInfo.stats.find((stat) => stat.stat.name === "hp")
                 ?.base_stat || 0,
@@ -89,12 +90,13 @@ function Card({
   baseAttack,
   baseDefense,
   baseEXP,
+  imgBack,
 }) {
   function seeMore({ id }) {
-    document.getElementById(`desc-${id}`).classList.remove("none");
+    document.getElementById(`desc${id}`).classList.remove("none");
   }
   function seeLess({ id }) {
-    document.getElementById(`desc-${id}`).classList.add("none");
+    document.getElementById(`desc${id}`).classList.add("none");
   }
   return (
     <>
@@ -120,22 +122,26 @@ function Card({
           )}
         </div>
         <button
-          onClick={() => seeMore({ id })}
+          onClick={() => seeMore((id = { id }))}
           style={{ background: "lightblue", margin: "15px" }}
         >
           See More!
         </button>
       </div>
-      <div id={`desc`} className="none">
-        <h1>weight: {weight}kg</h1>
-        <h1>height: {height}cm</h1>
-        <h1>Base Defense: {baseHP}</h1>
-        <h1>Base Attack: {baseAttack}</h1>
-        <h1>Base Defense: {baseDefense}</h1>
-        <h1>Base Experience: {baseEXP}</h1>
-        <h1 className="x" onClick={() => seeLess({ id })}>
-          X
-        </h1>
+      <div id={`desc${id}`} className="none">
+        <div className="desc">
+          <h1>Name: {name}</h1>
+          <img src={imgBack} alt="pokePic" className="imgback" />
+          <h1>weight: {weight}kg</h1>
+          <h1>height: {height}cm</h1>
+          <h1>Base Defense: {baseHP}</h1>
+          <h1>Base Attack: {baseAttack}</h1>
+          <h1>Base Defense: {baseDefense}</h1>
+          <h1>Base Experience: {baseEXP}</h1>
+          <h1 className="x" onClick={() => seeLess(id)}>
+            X
+          </h1>
+        </div>
       </div>
     </>
   );
@@ -158,6 +164,7 @@ function CardList({ pokemons }) {
           baseAttack={i.baseAttack}
           baseDefense={i.baseDefense}
           baseEXP={i.baseEXP}
+          imgBack={i.imgBack}
         />
       ))}
     </div>
