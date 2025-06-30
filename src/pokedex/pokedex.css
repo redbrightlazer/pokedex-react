@@ -1,0 +1,76 @@
+body {
+  background-color: rgb(241, 225, 0);
+}
+.none {
+  display: none;
+}
+#desc {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200vh;
+  height: 90vh;
+  border: 5px solid antiquewhite;
+  border-radius: 30px;
+  background-color: antiquewhite;
+  z-index: 100;
+  overflow: auto;
+}
+
+#desc .x {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+}
+#desc .x:hover {
+  background-color: darkred;
+  color: white;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+  padding: 20px;
+}
+.card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+.button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px;
+  z-index: 10;
+}
+
+.button > * {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #ffe066;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.button > *:hover {
+  background: #ffd700;
+}
+#b1 {
+  margin-right: 150px;
+}
