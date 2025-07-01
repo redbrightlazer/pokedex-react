@@ -1,10 +1,6 @@
 body {
   background-color: rgb(241, 225, 0);
 }
-.blur {
-  filter: blur(5px);
-  transition: filter 0.3s ease-in-out;
-}
 .none {
   display: none;
 }
@@ -45,7 +41,7 @@ body {
   padding: 10px 20px;
   border: 5px solid white;
   border-radius: 30px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.25s ease-in-out;
   height: 50px;
   width: 120px;
 }

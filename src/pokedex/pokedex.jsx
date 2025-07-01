@@ -47,13 +47,14 @@ function Pokedex() {
       );
       setPokemons(newPoke);
       console.log(getPokemons);
+      setIsLoading(false);
     }
-
     getPokemons();
-    setIsLoading(false);
   }, [offset]);
 
-  const filteredPokemon = pokemons.filter((p) => p.name.includes(filter));
+  const filteredPokemon = pokemons.filter((p) =>
+    p.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
@@ -69,7 +70,7 @@ function Pokedex() {
             type="text"
             placeholder="Search..."
             value={filter}
-            onChange={(e) => setFilter(e.target.value.toLowerCase())}
+            onChange={(e) => setFilter(e.target.value)}
             className="search"
           />
           <CardList
