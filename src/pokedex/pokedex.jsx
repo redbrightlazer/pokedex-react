@@ -5,7 +5,7 @@ function Pokedex() {
   const [isLoading, setIsLoading] = useState(true);
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState("");
-
+  const [isdesc, setIsDesc] = useState(false);
   useEffect(() => {
     async function getPokemons() {
       const res = await fetch(
@@ -70,9 +70,19 @@ function Pokedex() {
             placeholder="Search..."
             value={filter}
             onChange={(e) => setFilter(e.target.value.toLowerCase())}
+            className="search"
           />
-          <CardList pokemons={filteredPokemon} />
-          <NavButtons offset={offset} setOffset={setOffset} />
+          <CardList
+            pokemons={filteredPokemon}
+            setIsDesc={setIsDesc}
+            isdesc={isdesc}
+          />
+          <NavButtons
+            offset={offset}
+            setOffset={setOffset}
+            setIsDesc={setIsDesc}
+            isdesc={isdesc}
+          />
         </>
       )}
     </>
@@ -91,12 +101,16 @@ function Card({
   baseDefense,
   baseEXP,
   imgBack,
+  isdesc,
+  setIsDesc,
 }) {
-  function seeMore({ id }) {
+  function seeMore(id, setIsDesc) {
     document.getElementById(`desc${id}`).classList.remove("none");
+    setIsDesc(true);
   }
-  function seeLess({ id }) {
+  function seeLess(id, setIsDesc) {
     document.getElementById(`desc${id}`).classList.add("none");
+    setIsDesc(false);
   }
   return (
     <>
@@ -122,8 +136,9 @@ function Card({
           )}
         </div>
         <button
-          onClick={() => seeMore((id = { id }))}
-          style={{ background: "lightblue", margin: "15px" }}
+          onClick={() => seeMore(id, setIsDesc)}
+          disabled={isdesc}
+          className="seeMore"
         >
           See More!
         </button>
@@ -138,7 +153,7 @@ function Card({
           <h1>Base Attack: {baseAttack}</h1>
           <h1>Base Defense: {baseDefense}</h1>
           <h1>Base Experience: {baseEXP}</h1>
-          <h1 className="x" onClick={() => seeLess(id)}>
+          <h1 className="x" onClick={() => seeLess(id, setIsDesc)}>
             X
           </h1>
         </div>
@@ -147,7 +162,7 @@ function Card({
   );
 }
 
-function CardList({ pokemons }) {
+function CardList({ pokemons, setIsDesc, isdesc }) {
   return (
     <div className="grid">
       {pokemons.map((i, key) => (
@@ -165,12 +180,14 @@ function CardList({ pokemons }) {
           baseDefense={i.baseDefense}
           baseEXP={i.baseEXP}
           imgBack={i.imgBack}
+          setIsDesc={setIsDesc}
+          isdesc={isdesc}
         />
       ))}
     </div>
   );
 }
-function NavButtons({ offset, setOffset }) {
+function NavButtons({ offset, setOffset, setIsDesc, isdesc }) {
   function Next() {
     setOffset(offset + 20);
   }
@@ -179,10 +196,15 @@ function NavButtons({ offset, setOffset }) {
   }
   return (
     <>
-      <button className="button" id="b1" onClick={Prev} disabled={offset === 0}>
+      <button
+        className="button"
+        id="b1"
+        onClick={Prev}
+        disabled={offset === 0 || isdesc === true}
+      >
         Previous
       </button>
-      <button className="button" onClick={Next}>
+      <button className="buttontwo" onClick={Next} disabled={isdesc === true}>
         Next
       </button>
     </>

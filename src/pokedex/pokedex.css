@@ -1,6 +1,10 @@
 body {
   background-color: rgb(241, 225, 0);
 }
+.blur {
+  filter: blur(5px);
+  transition: filter 0.3s ease-in-out;
+}
 .none {
   display: none;
 }
@@ -16,6 +20,39 @@ body {
   background-color: antiquewhite;
   z-index: 100;
   overflow: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  color: #333;
+}
+.seeMore {
+  /* style={{
+    background: "lightblue",
+    margin: "15px",
+    position: "absolute",
+    bottom: "10px",
+    right: "10px",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "30px",
+    hover: { background: "transparent", cursor: "pointer" },
+  }} */
+
+  background-color: lightblue;
+  margin: 15px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  border: 5px solid white;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  height: 50px;
+  width: 120px;
+}
+.seeMore:hover {
+  background-color: transparent;
+  cursor: pointer;
+  border: 5px solid lightblue;
 }
 .imgback {
   width: 250px;
@@ -28,7 +65,7 @@ body {
   right: 10px;
   background-color: red;
 }
-#desc .x:hover {
+.desc .x:hover {
   background-color: darkred;
   color: white;
   cursor: pointer;
@@ -40,6 +77,9 @@ body {
   justify-items: center;
   align-items: start;
   padding: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0px 10%;
 }
 .card {
   position: relative;
@@ -53,23 +93,24 @@ body {
 .button {
   position: absolute;
   top: 20px;
+  right: 40px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px;
+  z-index: 10;
+  width: 150px;
+  height: 25px;
+}
+.buttontwo {
+  position: absolute;
+  top: 20px;
   right: 20px;
   display: flex;
   flex-direction: column; /* Stack buttons vertically */
   gap: 15px;
   z-index: 10;
-}
-
-.button > * {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #ffe066;
-  color: #333;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  width: 150px;
+  height: 25px;
 }
 
 .button > *:hover {
@@ -77,4 +118,13 @@ body {
 }
 #b1 {
   margin-right: 150px;
+}
+.search {
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
